@@ -10,7 +10,7 @@
     // like Node.
     module.exports = factory(require("rangy"),require("rangy/lib/rangy-selectionsaverestore"));
   } else {
-    root['textAngular'] = factory(rangy);
+    root['textAngular'] = factory(root["rangy"]);
   }
 }(this, function (rangy) {
 
@@ -840,8 +840,8 @@ angular.module('textAngularSetup', [])
 		iconclass: 'fa fa-picture-o',
 		tooltiptext: taTranslations.insertImage.tooltip,
 		action: function(){
-			var imageLink;
-			imageLink = $window.prompt(taTranslations.insertImage.dialogPrompt, 'http://');
+				var imageLink;
+				imageLink = $window.prompt(taTranslations.insertImage.dialogPrompt, 'http://');
 			if(imageLink && imageLink !== '' && imageLink !== 'http://'){
 				/* istanbul ignore next: don't know how to test this... since it needs a dialogPrompt */
 				// block javascript here
@@ -859,7 +859,7 @@ angular.module('textAngularSetup', [])
 					// See Issue #1201
 					// Investigation reveals that Firefox only inserts a <p> only!!!!
 					// So now we use insertHTML here and all is fine.
-					// NOTE: this is what 'insertImage' is supposed to do anyway!
+						// NOTE: this is what 'insertImage' is supposed to do anyway!
 					var embed = '<img src="' + imageLink + '">';
 					return this.$editor().wrapSelection('insertHTML', embed, true);
 				}
@@ -1079,7 +1079,7 @@ function getDomFromHtml(html)
 
 // Global to textAngular REGEXP vars for block and list elements.
 
-var BLOCKELEMENTS = /^(address|article|aside|audio|blockquote|canvas|center|dd|div|dl|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|hr|noscript|ol|output|p|pre|section|table|tfoot|ul|video)$/i;
+var BLOCKELEMENTS = /^(address|article|aside|audio|blockquote|canvas|center|dd|div|dl|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|hr|noscript|ol|output|p|pre|section|table|tfoot|ul|video|img)$/i;
 var LISTELEMENTS = /^(ul|li|ol)$/i;
 // updated VALIDELEMENTS to include #text and span so that we can use nodeName instead of tagName
 var VALIDELEMENTS = /^(#text|span|address|article|aside|audio|blockquote|canvas|center|dd|div|dl|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|hr|noscript|ol|output|p|pre|section|table|tfoot|ul|video|li)$/i;
